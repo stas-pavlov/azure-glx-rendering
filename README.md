@@ -321,4 +321,6 @@ Thu Sep 27 13:35:22 2018
 ```
 
 ## Conclusion
-As result of this simple tutorial we created VM in Azure to share GPU for GLX rendering from container.
+As result of this simple tutorial we created VM in Azure to share GPU for GLX rendering from containers.
+I've created scripts for each task so you don't need to print or copy-n-paste.
+ 
