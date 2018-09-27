@@ -319,7 +319,52 @@ Thu Sep 27 13:35:22 2018
 |    0      4925      G   glxgears                                       2MiB |
 +-----------------------------------------------------------------------------+
 ```
+Ok, let's look what we have after the reboot.
+```
+sudo reboot
+```
+Trying to start X server again
+```
+stas@azureglxrendering:~$ X :0 -ac&
+[1] 2771
+stas@azureglxrendering:~$ (EE)
+Fatal server error:
+(EE) Server is already active for display 0
+        If this server is no longer running, remove /tmp/.X0-lock
+        and start again.
+(EE)
+(EE)
+Please consult the The X.Org Foundation support
+         at http://wiki.x.org
+ for help.
+(EE)
+
+[1]+  Exit 1                  X :0 -ac
+```
+Ok, let's look what happened.
+```
+stas@azureglxrendering:~$ ps aux|grep X
+root      1688  0.6  0.1 294536 62908 tty7     Ss+  13:57   0:01 /usr/lib/xorg/Xorg -core :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+stas      3109  0.0  0.0  12944   952 pts/8    S+   14:01   0:00 grep --color=auto X
+```
+A-ha, lightdm was automatically started, so we need to disable it, as we don't need it.
+```
+sudo systemctl disable lightdm.service
+sudo systemctl stop lightdm.service
+```
+So now we again can run our X server and also can do it after rebot.
 
 ## Conclusion
 As result of this simple tutorial we created VM in Azure to share GPU for GLX rendering from containers.
 I've created scripts for each task so you don't need to print or copy-n-paste. They can be found here in repository.
+And can be used like here
+```
+git clone https://github.com/stas-pavlov/azureglxrendering.git
+cd azureglxrendering
+chmod +x install*
+chmod +x prep*
+./istall-all.sh
+```
+I did not include code to run X server, as normally, you should consider more secure way to run its, depending on your requirements. As well it would be usefull to start it automatically the way you prefer.
+
+
