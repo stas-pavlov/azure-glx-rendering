@@ -1,4 +1,4 @@
-# GLX rendering using containers in Azure 
+# OpenGL/GLX rendering using containers in Azure 
 
 ## Intro
 Virtual machines with GPU cost is compartible high, so idea to share GPU resource to render in a container looks great.
