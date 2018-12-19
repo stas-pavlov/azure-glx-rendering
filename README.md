@@ -69,7 +69,7 @@ stas@azureglxrendering:~$ lspci|grep NVIDIA
 ```
 Good. So now we need to install drivers. Detailed instructions can be found here https://docs.microsoft.com/en-us/azure/virtual-machines/linux/n-series-driver-setup. 
 ```
-CUDA_REPO_PKG=cuda-repo-ubuntu1604_9.1.85-1_amd64.deb
+CUDA_REPO_PKG=cuda-repo-ubuntu1604_10.0.130-1_amd64.deb
 
 wget -O /tmp/${CUDA_REPO_PKG} http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/${CUDA_REPO_PKG} 
 
