@@ -212,6 +212,8 @@ Thu Sep 27 13:05:50 2018
 ```
 So now we ready to start X server. For demo purposes and simplicity I use parameters to disable authentication for X server. You can consider other way of starting X server and connecting to them from containers. Please see this document: http://wiki.ros.org/docker/Tutorials/GUI#The_simple_way. All the needed stuff should be installed during previous installaton. So let's configure our X server to use GPU acceleration and possibility to start from anybody.
 
+**_Notice_**:_This code assumes that you have only 1 GPU at the VM_.
+
 ```
 sudo nvidia-xconfig --busid `nvidia-xconfig --query-gpu-info | grep BusID | sed 's/PCI BusID : PCI:/PCI:/'`
 
